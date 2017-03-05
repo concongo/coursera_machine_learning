@@ -21,9 +21,14 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
-
-
-
+for i = 1:length(idx)
+    for j = 1:K
+      t(j)=sum((X(i,:)-centroids(j,:)).^2); % according to formula I compute ||Xi - Mk||2 which is (X1i-Mk)2+(X2i-Mk)2
+    endfor
+    [x, ix] = min(t); %Function min return two values. The first is the min value, the second the position, in this case
+                      %the positicion is K, which is the id of the cluster
+    idx(i)=ix;
+endfor
 
 
 

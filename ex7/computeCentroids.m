@@ -26,7 +26,10 @@ centroids = zeros(K, n);
 % Note: You can use a for-loop over the centroids to compute this.
 %
 
-
+for i = 1:K
+    n = sum(i==idx); % it will sum all the elements that match the centroid K
+    centroids(i,:)=sum(X .* (idx==i))/n; %this wil sum up just the value assign to centroid
+endfor
 
 
 

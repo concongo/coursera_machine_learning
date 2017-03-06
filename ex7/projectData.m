@@ -18,7 +18,11 @@ Z = zeros(size(X, 1), K);
 %                    projection_k = x' * U(:, k);
 %
 
+% In order to reduce the dimensions, we nee to create Ureduce first
+% Taking the first K element of U, then we create Z multiplying Ureduce Transpose by X
 
+Ureduce = U(:, 1:K);
+Z = X * Ureduce;
 
 
 % =============================================================

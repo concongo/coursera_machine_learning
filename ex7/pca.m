@@ -20,8 +20,10 @@ S = zeros(n);
 %       number of examples).
 %
 
+%c_m is coovariance matrix whic is n x n
 
-
+sigma = (X'*X)/m; %sigma is the coovariance matrix
+[U, S, V] = svd(sigma); % svd will return a all the U vectors, a Diagonal Matrix S with the standar deviations
 
 
 

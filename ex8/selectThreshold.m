@@ -34,7 +34,7 @@ for epsilon = min(pval):stepsize:max(pval)
     rec = tp / (tp + fn);
    
     
-    F1 = (2*prec*rec)/(prec+rec);
+    F1 = (2*prec*rec)/(prec+rec); %Using the F1 Score, we can determine the best epsilon to use
 
     % =============================================================
 

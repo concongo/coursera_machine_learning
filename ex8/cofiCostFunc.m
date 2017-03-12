@@ -41,16 +41,29 @@ Theta_grad = zeros(size(Theta));
 %
 
 
+J = sum(sum((((X*Theta')-Y) .* R).^2))/2; % multiply by R in order to make 0 whatever is not predicted by the user
+ 
+J = J + lambda*sum(sum(Theta.^2))/2;  
+J = J + lambda*sum(sum(X.^2))/2;    
 
 
+ 
+for i = 1:num_movies
+    idx = find(R(i,:)==1); % filter the users who rated movie i
+    Theta_temp = Theta(idx,:);
+    Y_temp = Y(i,idx);
+    X_grad(i,:)=((X(i,:)*Theta_temp')-Y_temp)*Theta_temp;
+    X_grad(i, :) = X_grad(i, :)+lambda*X(i, :);
+    
+endfor
 
-
-
-
-
-
-
-
+for j=1:num_users
+    idx = find(R(:, j)==1)'; % filter movies rated by user j.
+    X_tmp = X(idx, :);       % features of movies rated by user j.
+    Y_tmp = Y(idx, j);       
+    Theta_grad(j, :) = (X_tmp*Theta(j, :)'-Y_tmp)'*X_tmp;
+    Theta_grad(j, :) = Theta_grad(j, :)+lambda*Theta(j, :);
+end
 
 
 
